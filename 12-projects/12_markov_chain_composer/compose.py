@@ -10,6 +10,8 @@ def get_words_from_text(text_path):
     with open(text_path, 'r') as f:
         text = f.read()
 
+        text = re.sub(r'\[(.+)\]', ' ', text)
+
         text = ' '.join(text.split())
         text = text.lower()
         text = text.translate(str.maketrans('', '', string.punctuation))
@@ -48,8 +50,20 @@ def compose(g, words, length=50):
     return composition
 
 
-def main():
-    words = get_words_from_text('texts/hp_sorcerer_stone.txt')
+def main(artist):
+    # Takes text from Harry Potter sorcerer stone
+    # words = get_words_from_text('texts/hp_sorcerer_stone.txt')
+
+    # Takes text from all files in given folder
+    words = []
+
+    for song_file in os.listdir(f'songs/{artist}'):
+        if song_file  == '.DS_Store':
+            continue
+
+        song_words = get_words_from_text(f'songs/{artist}/{song_file}')
+        words.extend(song_words)
+
     g = make_graph(words)
     composition = compose(g, words, 100)
 
@@ -57,5 +71,5 @@ def main():
 
 
 if __name__ == '__main__':
-    text = main()
+    text = main('green_day')
     print(text)
