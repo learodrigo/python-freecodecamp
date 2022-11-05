@@ -10,10 +10,11 @@ monthConversion = {
     "Sep": "September",
     "Oct": "October",
     "Nov": "November",
-    "Dec": "December"
+    "Dec": "December",
 }
 
 june = "Jun"
+
 print(monthConversion["Jan"])
 print(monthConversion[june])
 print(monthConversion.get("Oct"), "is fine")

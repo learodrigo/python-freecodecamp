@@ -6,7 +6,7 @@ from words import words
 def get_valid_word(arr):
     word = random.choice(arr)
 
-    while '-' in word or ' ' in word:
+    while "-" in word or " " in word:
         word = random.choice(arr)
 
     return word.upper()
@@ -21,10 +21,13 @@ def hangman():
     lives = 6
 
     while len(word_letters) > 0 and lives > 0:
-        print(f"You have {lives} left, and have used these letters: ", ' '.join(used_letters))
+        print(
+            f"You have {lives} left, and have used these letters: ",
+            " ".join(used_letters),
+        )
 
         word_list = [letter if letter in used_letters else "-" for letter in word]
-        print("Current word: ", ' '.join(word_list))
+        print("Current word: ", " ".join(word_list))
 
         user_letter = input("Choose a letter: ").upper()
         if user_letter in alphabet - used_letters:
@@ -48,7 +51,7 @@ def hangman():
     if lives == 0:
         print("You're dead, maybe next time! The word was", word)
     else:
-        print('YAY! You guessed the word', word, '!')
+        print("YAY! You guessed the word", word, "!")
 
 
 hangman()

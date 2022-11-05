@@ -10,9 +10,9 @@ def naive_search(l, target):
 
 
 def binary_search(l, target, low=None, high=None):
-    if low is None:
+    if low == None:
         low = 0
-    if high is None:
+    if high == None:
         high = len(l) - 1
 
     if high < low:
@@ -22,10 +22,8 @@ def binary_search(l, target, low=None, high=None):
 
     if l[midpoint] == target:
         return midpoint
-
     elif target < l[midpoint]:
         return binary_search(l, target, low, midpoint - 1)
-
     else:
         return binary_search(l, target, midpoint + 1, high)
 
@@ -37,7 +35,9 @@ if __name__ == "__main__":
     # print((binary_search(arr, target)))
 
     length = 10000
+    print(f"Trying {length:,} times")
     sorted_list = set()
+
     while len(sorted_list) < length:
         sorted_list.add(random.randint(-3 * length, 3 * length))
 
@@ -47,12 +47,10 @@ if __name__ == "__main__":
     for target in sorted_list:
         naive_search(sorted_list, target)
     end = time.time()
-
     print(f"Naive search time is: {(end - start) / length} seconds")
 
     start = time.time()
     for target in sorted_list:
         binary_search(sorted_list, target)
     end = time.time()
-
     print(f"Binary search time is: {(end - start) / length} seconds")

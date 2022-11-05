@@ -19,7 +19,7 @@ class HumanPlayer(Player):
         val = None
 
         while not valid_square:
-            square = input(self.letter + "\'s turn. Input move (0-8): ")
+            square = input(self.letter + "'s turn. Input move (0-8): ")
 
             try:
                 val = int(square)
@@ -64,7 +64,7 @@ class GeniusComputerPlayer(Player):
                 "position": None,
                 "score": 1 * (state.num_empty_squares() + 1)
                 if other_player == max_player
-                else -1 * (state.num_empty_squares() + 1)
+                else -1 * (state.num_empty_squares() + 1),
             }
         elif not state.empty_squares():
             return {"position": None, "score": 0}

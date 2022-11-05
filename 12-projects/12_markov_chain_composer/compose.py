@@ -7,14 +7,14 @@ from graph import Graph, Vertex
 
 
 def get_words_from_text(text_path):
-    with open(text_path, 'r') as f:
+    with open(text_path, "r") as f:
         text = f.read()
 
-        text = re.sub(r'\[(.+)\]', ' ', text)
+        text = re.sub(r"\[(.+)\]", " ", text)
 
-        text = ' '.join(text.split())
+        text = " ".join(text.split())
         text = text.lower()
-        text = text.translate(str.maketrans('', '', string.punctuation))
+        text = text.translate(str.maketrans("", "", string.punctuation))
 
     words = text.split()
     return words
@@ -57,19 +57,16 @@ def main(artist):
     # Takes text from all files in given folder
     words = []
 
-    for song_file in os.listdir(f'songs/{artist}'):
-        if song_file  == '.DS_Store':
-            continue
-
-        song_words = get_words_from_text(f'songs/{artist}/{song_file}')
+    for song_file in os.listdir(f"songs/{artist}"):
+        song_words = get_words_from_text(f"songs/{artist}/{song_file}")
         words.extend(song_words)
 
     g = make_graph(words)
     composition = compose(g, words, 100)
 
-    return ' '.join(composition)
+    return " ".join(composition)
 
 
-if __name__ == '__main__':
-    text = main('green_day')
+if __name__ == "__main__":
+    text = main("green_day")
     print(text)

@@ -13,7 +13,7 @@ class TicTacToe:
         return [" " for _ in range(9)]
 
     def print_board(self):
-        for row in [self.board[i * 3:(i + 1) * 3] for i in range(3)]:
+        for row in [self.board[i * 3 : (i + 1) * 3] for i in range(3)]:
             print("| " + " | ".join(row) + " |")
 
     @staticmethod
@@ -33,7 +33,7 @@ class TicTacToe:
 
     def winner(self, square, letter):
         row_ind = math.floor(square / 3)
-        row = self.board[row_ind * 3:(row_ind + 1) * 3]
+        row = self.board[row_ind * 3 : (row_ind + 1) * 3]
 
         if all([spot == letter for spot in row]):
             return True

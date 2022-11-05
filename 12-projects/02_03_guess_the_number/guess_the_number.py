@@ -30,10 +30,12 @@ def computer_guess(x):
         else:
             assump_num = low
 
-        feedback = input(f"Is {assump_num} too high (H), too low (L) or correct (C)?").lower()
-        if feedback == 'h':
+        feedback = input(
+            f"Is {assump_num} too high (H), too low (L) or correct (C)?"
+        ).lower()
+        if feedback == "h":
             high = assump_num - 1
-        elif feedback == 'l':
+        elif feedback == "l":
             low = assump_num + 1
 
     print(f"Yay, the computer guess your number {assump_num}")

@@ -19,7 +19,7 @@ class Board:
 
         while bombs_planted < self.num_bombs:
             # numeber**2 is number at power of number
-            loc = random.randint(0, self.dim_size ** 2 - 1)
+            loc = random.randint(0, self.dim_size**2 - 1)
             row = loc // self.dim_size
             col = loc % self.dim_size
 
@@ -44,7 +44,7 @@ class Board:
 
         for r in range(max(0, row - 1), min(self.dim_size - 1, row + 1) + 1):
             for c in range(max(0, col - 1), min(self.dim_size - 1, col + 1) + 1):
-                if r == row and c == col:
+                if r is row and c == col:
                     continue
 
                 if self.board[r][c] == "*":
@@ -70,47 +70,45 @@ class Board:
         return True
 
     def __str__(self):
-        visible_board = [[None for _ in range(self.dim_size)] for _ in range(self.dim_size)]
+        visible_board = [
+            [None for _ in range(self.dim_size)] for _ in range(self.dim_size)
+        ]
 
         for row in range(self.dim_size):
             for col in range(self.dim_size):
                 if (row, col) in self.dug:
                     visible_board[row][col] = str(self.board[row][col])
                 else:
-                    visible_board[row][col] = ' '
+                    visible_board[row][col] = " "
 
-        string_rep = ''
+        string_rep = ""
 
         widths = []
         for idx in range(self.dim_size):
             columns = map(lambda x: x[idx], visible_board)
-            widths.append(
-                len(
-                    max(columns, key=len)
-                )
-            )
+            widths.append(len(max(columns, key=len)))
 
         indices = [i for i in range(self.dim_size)]
-        indices_row = '   '
+        indices_row = "   "
         cells = []
         for idx, col in enumerate(indices):
-            custom_format = '%-' + str(widths[idx]) + "s"
+            custom_format = "%-" + str(widths[idx]) + "s"
             cells.append(custom_format % col)
-        indices_row += '  '.join(cells)
-        indices_row += '  \n'
+        indices_row += "  ".join(cells)
+        indices_row += "  \n"
 
         for i in range(len(visible_board)):
             row = visible_board[i]
-            string_rep += f'{i} |'
+            string_rep += f"{i} |"
             cells = []
             for idx, col in enumerate(row):
-                custom_format = '%-' + str(widths[idx]) + "s"
+                custom_format = "%-" + str(widths[idx]) + "s"
                 cells.append(custom_format % col)
-            string_rep += ' |'.join(cells)
-            string_rep += ' |\n'
+            string_rep += " |".join(cells)
+            string_rep += " |\n"
 
         str_len = int(len(string_rep) / self.dim_size)
-        string_rep = indices_row + '-' * str_len + '\n' + string_rep + '-' * str_len
+        string_rep = indices_row + "-" * str_len + "\n" + string_rep + "-" * str_len
 
         return string_rep
 
@@ -120,10 +118,12 @@ def play(dim_size=10, num_bomb=10):
 
     safe = True
 
-    while len(board.dug) < board.dim_size ** 2 - num_bomb:
+    while len(board.dug) < board.dim_size**2 - num_bomb:
         print(board)
 
-        user_input = re.split(',(\\s)*', input("Where would you like to dig? Input as row,col: "))
+        user_input = re.split(
+            ",(\\s)*", input("Where would you like to dig? Input as row,col: ")
+        )
 
         row, col = int(user_input[0]), int(user_input[-1])
 
@@ -141,7 +141,9 @@ def play(dim_size=10, num_bomb=10):
     else:
         print("Game over, you stepped a bomb")
 
-        board.dug = [(r, c) for r in range(board.dim_size) for c in range(board.dim_size)]
+        board.dug = [
+            (r, c) for r in range(board.dim_size) for c in range(board.dim_size)
+        ]
         print(board)
 
 

@@ -16,10 +16,12 @@ def play():
 
 def is_win(player, opponent):
     # returns true if player wins
-    if (player == 'r' and opponent == 's') or\
-       (player == 's' and opponent == 'p') or\
-       (player == 'p' and opponent == 'r'):
-         return True
+    if (
+        (player == "r" and opponent == "s")
+        or (player == "s" and opponent == "p")
+        or (player == "p" and opponent == "r")
+    ):
+        return True
 
 
 print(play())

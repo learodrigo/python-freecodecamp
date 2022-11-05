@@ -7,4 +7,3 @@ class Student:
 
     def on_honor_roll(self):
         return self.gpa >= 4.0 and self.is_on_probation
-

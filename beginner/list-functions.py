@@ -16,10 +16,13 @@ print()
 print(friends.count("Jim"))
 
 print()
+
 lucky_numbers.reverse()
+
 print(lucky_numbers)
 
 lucky_num_2 = lucky_numbers.copy()
 lucky_num_2.remove(4)
+
 print()
 print(lucky_num_2)

@@ -6,7 +6,7 @@ beatles = ["John Lennon", "Paul McCartney", "George Harrison", "Ringo Star"]
 
 
 def get_file_ext(filename):
-    return filename[filename.index(".") + 1:]
+    return filename[filename.index(".") + 1 :]
 
 
 def roll_dice(num):
